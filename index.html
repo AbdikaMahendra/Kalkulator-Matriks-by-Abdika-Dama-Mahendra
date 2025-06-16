@@ -8,64 +8,82 @@
 </head>
 <body>
     <div class="container">
-        <h1>🧮 Kalkulator Matriks</h1>
-        <div style="text-align: center; margin-bottom: 20px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; border: 2px solid rgba(102, 126, 234, 0.2);">
-            <h2 style="color: #333; font-size: 1.2em; margin-bottom: 5px;">Abdika Dama Mahendra</h2>
-            <p style="color: #666; font-size: 1em; font-weight: 500;">411241040</p>
-        </div>
-        
-        <div class="controls">
-            <div class="size-control">
-                <label>Ukuran Matriks A:</label>
-                <input type="number" id="rowsA" min="1" max="10" value="3">
-                <span>×</span>
-                <input type="number" id="colsA" min="1" max="10" value="3">
-            </div>
-            <div class="size-control">
-                <label>Ukuran Matriks B:</label>
-                <input type="number" id="rowsB" min="1" max="10" value="3">
-                <span>×</span>
-                <input type="number" id="colsB" min="1" max="10" value="3">
+        <div class="header">
+            <h1>🔢 Kalkulator Matriks</h1>
+            <div class="student-info">
+                <h3>Abdika Dama Mahendra</h3>
+                <p>NIM: 411241040</p>
             </div>
         </div>
 
-        <div class="operations">
-            <button class="btn" onclick="performOperation('add')">A + B</button>
-            <button class="btn" onclick="performOperation('subtract')">A - B</button>
-            <button class="btn" onclick="performOperation('multiply')">A × B</button>
-            <button class="btn" onclick="performOperation('transpose_a')">Transpose A</button>
-            <button class="btn" onclick="performOperation('transpose_b')">Transpose B</button>
-            <button class="btn" onclick="performOperation('determinant_a')">Det(A)</button>
-            <button class="btn" onclick="performOperation('determinant_b')">Det(B)</button>
-            <button class="btn" onclick="performOperation('inverse_a')">A⁻¹</button>
-            <button class="btn" onclick="performOperation('inverse_b')">B⁻¹</button>
+        <div class="controls">
+            <div class="control-group">
+                <label>Baris A:</label>
+                <input type="number" id="rowsA" value="2" min="1" max="5">
+            </div>
+            <div class="control-group">
+                <label>Kolom A:</label>
+                <input type="number" id="colsA" value="2" min="1" max="5">
+            </div>
+            <div class="control-group">
+                <label>Baris B:</label>
+                <input type="number" id="rowsB" value="2" min="1" max="5">
+            </div>
+            <div class="control-group">
+                <label>Kolom B:</label>
+                <input type="number" id="colsB" value="2" min="1" max="5">
+            </div>
+            <div class="control-group">
+                <label>Operasi:</label>
+                <select id="operation">
+                    <option value="add">A + B</option>
+                    <option value="subtract">A - B</option>
+                    <option value="multiply">A × B</option>
+                    <option value="transposeA">Transpose A</option>
+                    <option value="transposeB">Transpose B</option>
+                </select>
+            </div>
+            <button onclick="generateMatrices()">Generate Matriks</button>
         </div>
 
         <div class="matrices-container">
             <div class="matrix-section">
                 <h3>Matriks A</h3>
-                <div id="matrixA" class="matrix"></div>
-                <div class="matrix-controls">
-                    <button class="btn" onclick="randomFill('A')">Random</button>
-                    <button class="btn" onclick="clearMatrix('A')">Clear</button>
-                    <button class="btn" onclick="identityMatrix('A')">Identity</button>
+                <div id="matrixA" class="matrix-grid"></div>
+                <div class="matrix-buttons">
+                    <button onclick="fillRandom('A')">Isi Random</button>
+                    <button onclick="clearMatrix('A')">Kosongkan</button>
                 </div>
             </div>
-            
+
             <div class="matrix-section">
                 <h3>Matriks B</h3>
-                <div id="matrixB" class="matrix"></div>
-                <div class="matrix-controls">
-                    <button class="btn" onclick="randomFill('B')">Random</button>
-                    <button class="btn" onclick="clearMatrix('B')">Clear</button>
-                    <button class="btn" onclick="identityMatrix('B')">Identity</button>
+                <div id="matrixB" class="matrix-grid"></div>
+                <div class="matrix-buttons">
+                    <button onclick="fillRandom('B')">Isi Random</button>
+                    <button onclick="clearMatrix('B')">Kosongkan</button>
                 </div>
             </div>
         </div>
 
+        <div class="operation-section">
+            <button onclick="calculateResult()" class="calculate-btn">🧮 Hitung Hasil</button>
+        </div>
+
         <div class="result-section">
-            <h3>Hasil</h3>
-            <div id="result"></div>
+            <h3>Hasil Operasi</h3>
+            <div id="result" class="matrix-result"></div>
+            <div id="resultMatrix" class="matrix-grid"></div>
+        </div>
+
+        <div class="info-section">
+            <h4>📋 Panduan Penggunaan:</h4>
+            <ul>
+                <li><strong>Penjumlahan/Pengurangan:</strong> Matriks A dan B harus memiliki dimensi yang sama</li>
+                <li><strong>Perkalian:</strong> Jumlah kolom A harus sama dengan jumlah baris B</li>
+                <li><strong>Transpose:</strong> Menukar baris dan kolom matriks</li>
+                <li><strong>Dimensi maksimal:</strong> 5×5 untuk performa optimal</li>
+            </ul>
         </div>
     </div>
 
