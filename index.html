@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Matriks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Kalkulator Matriks</h1>
+        <div style="text-align: center; margin-bottom: 20px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; border: 2px solid rgba(102, 126, 234, 0.2);">
+            <h2 style="color: #333; font-size: 1.2em; margin-bottom: 5px;">Abdika Dama Mahendra</h2>
+            <p style="color: #666; font-size: 1em; font-weight: 500;">411241040</p>
+        </div>
+        
+        <div class="controls">
+            <div class="size-control">
+                <label>Ukuran Matriks A:</label>
+                <input type="number" id="rowsA" min="1" max="10" value="3">
+                <span>×</span>
+                <input type="number" id="colsA" min="1" max="10" value="3">
+            </div>
+            <div class="size-control">
+                <label>Ukuran Matriks B:</label>
+                <input type="number" id="rowsB" min="1" max="10" value="3">
+                <span>×</span>
+                <input type="number" id="colsB" min="1" max="10" value="3">
+            </div>
+        </div>
+
+        <div class="operations">
+            <button class="btn" onclick="performOperation('add')">A + B</button>
+            <button class="btn" onclick="performOperation('subtract')">A - B</button>
+            <button class="btn" onclick="performOperation('multiply')">A × B</button>
+            <button class="btn" onclick="performOperation('transpose_a')">Transpose A</button>
+            <button class="btn" onclick="performOperation('transpose_b')">Transpose B</button>
+            <button class="btn" onclick="performOperation('determinant_a')">Det(A)</button>
+            <button class="btn" onclick="performOperation('determinant_b')">Det(B)</button>
+            <button class="btn" onclick="performOperation('inverse_a')">A⁻¹</button>
+            <button class="btn" onclick="performOperation('inverse_b')">B⁻¹</button>
+        </div>
+
+        <div class="matrices-container">
+            <div class="matrix-section">
+                <h3>Matriks A</h3>
+                <div id="matrixA" class="matrix"></div>
+                <div class="matrix-controls">
+                    <button class="btn" onclick="randomFill('A')">Random</button>
+                    <button class="btn" onclick="clearMatrix('A')">Clear</button>
+                    <button class="btn" onclick="identityMatrix('A')">Identity</button>
+                </div>
+            </div>
+            
+            <div class="matrix-section">
+                <h3>Matriks B</h3>
+                <div id="matrixB" class="matrix"></div>
+                <div class="matrix-controls">
+                    <button class="btn" onclick="randomFill('B')">Random</button>
+                    <button class="btn" onclick="clearMatrix('B')">Clear</button>
+                    <button class="btn" onclick="identityMatrix('B')">Identity</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-section">
+            <h3>Hasil</h3>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
